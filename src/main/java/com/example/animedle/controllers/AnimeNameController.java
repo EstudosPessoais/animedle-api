@@ -2,11 +2,13 @@ package com.example.animedle.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.animedle.services.CheckNameService;
+
+import ch.qos.logback.core.util.StringUtil;
 
 @RestController
 public class AnimeNameController {
@@ -18,8 +20,18 @@ public class AnimeNameController {
         this.checkNameService = checkNameService;
     }
 
-    @PostMapping("/hello")
-    public ResponseEntity<String> any(@RequestBody String body) {
-        return ResponseEntity.ok(body);
+    @GetMapping("/anime-name")
+    public ResponseEntity<String> any(@RequestParam String animeName) {
+        try {
+            String anime = checkNameService.execute(animeName);
+            if (StringUtil.isNullOrEmpty(anime)) {
+                return ResponseEntity.noContent().build();
+            }
+
+            return ResponseEntity.ok(anime);
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

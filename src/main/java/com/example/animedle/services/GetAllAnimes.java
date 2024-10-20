@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+// [] - TODO: Switch the Exception to another exception, like "ResourceNotFoundException
 public class GetAllAnimes {
 
     private final IAnimeRepository animeRepository;

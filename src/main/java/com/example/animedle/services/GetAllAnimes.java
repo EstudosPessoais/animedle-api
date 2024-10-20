@@ -17,7 +17,8 @@ public class GetAllAnimes {
 
     public List<Anime> execute() throws Exception {
         List<Anime> find = animeRepository.findAllAnimes();
-        if(!find.isEmpty()) {
+
+        if(find.isEmpty()) {
             throw new Exception("[Error] - Resource not found");
         }
 

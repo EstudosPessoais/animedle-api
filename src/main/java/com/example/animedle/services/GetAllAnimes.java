@@ -1,12 +1,12 @@
 package com.example.animedle.services;
 
 import com.example.animedle.entities.anime.Anime;
+import com.example.animedle.errors.ResourceNotFoundException;
 import com.example.animedle.repositories.IAnimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-// [] - TODO: Switch the Exception to another exception, like "ResourceNotFoundException
 public class GetAllAnimes {
 
     private final IAnimeRepository animeRepository;
@@ -16,11 +16,11 @@ public class GetAllAnimes {
         this.animeRepository = animeRepository;
     }
 
-    public List<Anime> execute() throws Exception {
+    public List<Anime> execute() throws ResourceNotFoundException {
         List<Anime> find = animeRepository.findAllAnimes();
 
         if(find.isEmpty()) {
-            throw new Exception("[Error] - Resource not found");
+            throw new ResourceNotFoundException("[Error] - Resource not found");
         }
 
         return find;

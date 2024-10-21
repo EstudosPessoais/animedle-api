@@ -2,12 +2,14 @@ package com.example.animedle.services;
 
 import com.example.animedle.entities.anime.Anime;
 import com.example.animedle.entities.anime.models.Genres;
+import com.example.animedle.errors.ResourceNotFoundException;
 import com.example.animedle.factories.MakeAnime;
 import com.example.animedle.repositories.InMemoryAnimeRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.List;
 
@@ -43,5 +45,16 @@ public class GetAllAnimesTest {
         assertEquals("Naruto", result.getFirst().getName());
         assertEquals("Sword Art Online", result.get(1).getName());
         assertEquals(Genres.ROMANCE, result.get(1).getGenresList().get(1));
+    }
+
+    @Test
+    @DisplayName("should return error when try get all animes on database")
+    void whenGetAllAnimes_returnResourceNotFoundException() {
+
+        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class, () -> {
+            sut.execute();
+        });
+
+        assertEquals("[Error] - Resource not found", exception.getMessage());
     }
 }

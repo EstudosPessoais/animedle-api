@@ -1,5 +1,6 @@
 package com.example.animedle.core;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -14,6 +15,6 @@ import lombok.experimental.SuperBuilder;
 public class RootEntity {
 
     private UUID id;
-    private Date createdAt;
-    private Date updatedAt;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
 }

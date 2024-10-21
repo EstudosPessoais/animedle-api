@@ -1,19 +1,26 @@
 package com.example.animedle.repositories;
 
-import com.example.animedle.entities.anime.Anime;
 import com.example.animedle.entities.anime.Chosen;
+import org.springframework.util.ObjectUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
-public class InMemoryChosenRepository implements IChosenRepository{
+public class InMemoryChosenRepository implements IChosenRepository {
 
     public List<Chosen> db = new ArrayList<>();
 
+    @Override
+    public Chosen create(Chosen chosenAnime) throws Exception {
+        if(ObjectUtils.isEmpty(chosenAnime)) {
+            throw new Exception("[Error] - Fail to save ChoosenAnime on database");
+        }
+        db.add(chosenAnime);
+        return chosenAnime;
+    }
 
     @Override
     public Chosen getAnimeOfTheDay(UUID animeId) {

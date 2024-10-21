@@ -10,6 +10,7 @@ import com.example.animedle.repositories.InMemoryChosenRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.annotation.Description;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -31,6 +32,7 @@ public class CheckAnimeCorrectTest {
     }
 
     @Test
+    @Description("When check if the anime is the choosen of the day, should return success")
     void whenCheckTheAnimeOfTheDay_returnAnAnime() throws ResourceNotFoundException {
         // ARRANGE
         inMemoryAnimeRepository.db.add(MakeAnime.makeAnimeFactory(

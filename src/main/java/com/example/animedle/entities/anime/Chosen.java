@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -15,4 +16,14 @@ import java.util.UUID;
 public class Chosen extends RootEntity {
     private UUID chosenAnimeId;
     private String chosenDate;
+
+    public static Chosen create(UUID animeId) {
+        return Chosen.builder()
+                .id(UUID.randomUUID())
+                .chosenAnimeId(animeId)
+                .chosenDate(LocalDate.now().toString())
+                .updatedAt(LocalDate.now())
+                .createdAt(LocalDate.now())
+                .build();
+    }
 }

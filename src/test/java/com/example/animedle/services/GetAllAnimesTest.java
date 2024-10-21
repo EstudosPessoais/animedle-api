@@ -5,11 +5,9 @@ import com.example.animedle.entities.anime.models.Genres;
 import com.example.animedle.errors.ResourceNotFoundException;
 import com.example.animedle.factories.MakeAnime;
 import com.example.animedle.repositories.InMemoryAnimeRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.List;
 

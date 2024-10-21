@@ -15,6 +15,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class CheckAnimeCorrectTest {
 
     private InMemoryAnimeRepository inMemoryAnimeRepository;
@@ -45,5 +47,42 @@ public class CheckAnimeCorrectTest {
 
         // ASSERT
         Assertions.assertNotNull(result);
+    }
+
+    @Test
+    void whenCheckTheAnimeOfTheDay_returnErrorBecauseDBAnimeIsEmpty() {
+        // ASSERT
+        UUID randomValue = UUID.randomUUID();
+        inMemoryChosenRepository.db.add(MakeChosen.makeChosenFactory(randomValue, LocalDate.now().toString()));
+
+        // ACT
+        ResourceNotFoundException result = assertThrows(ResourceNotFoundException.class, () -> {
+           sut.execute(randomValue);
+        });
+
+        // ARRANGE
+        assertEquals("[Error] - Anime didn't found", result.getMessage());
+    }
+
+    @Test
+    void whenCheckTheAnimeOfTheDay_returnErrorBecauseTodayIsAnotherAnime() {
+        // ASSERT
+        inMemoryAnimeRepository.db.add(MakeAnime.makeAnimeFactory(
+                "Naruto", List.of(Genres.ACTION, Genres.ADVENTURE), null, null, null, null, null, null));
+        inMemoryAnimeRepository.db.add(MakeAnime.makeAnimeFactory(
+                "Sword Art Online", List.of(Genres.ACTION, Genres.ROMANCE), null, null, null, null, null, null));
+
+        UUID chosenAnimeId = inMemoryAnimeRepository.db.getFirst().getId();
+        UUID wrongValue = UUID.randomUUID();
+
+        inMemoryChosenRepository.db.add(MakeChosen.makeChosenFactory(chosenAnimeId, LocalDate.now().toString()));
+
+        // ACT
+        ResourceNotFoundException result = assertThrows(ResourceNotFoundException.class, () -> {
+            sut.execute(wrongValue);
+        });
+
+        // ARRANGE
+        assertEquals("[Error] - Today is not the day for this anime", result.getMessage());
     }
 }

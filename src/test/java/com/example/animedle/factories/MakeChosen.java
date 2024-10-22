@@ -1,6 +1,6 @@
 package com.example.animedle.factories;
 
-import com.example.animedle.entities.anime.Chosen;
+import com.example.animedle.entities.Chosen;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -13,7 +13,6 @@ public class MakeChosen {
             String chosenAnimeDate
     ) {
         return Chosen.builder()
-                .id(UUID.randomUUID())
                 .chosenAnimeId(Optional.ofNullable(animeId).orElse(UUID.randomUUID()))
                 .chosenDate(Optional.ofNullable(chosenAnimeDate).orElse(LocalDate.now().toString()))
                 .build();

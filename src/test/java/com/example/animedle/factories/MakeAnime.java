@@ -1,9 +1,9 @@
 package com.example.animedle.factories;
 
-import com.example.animedle.entities.anime.Anime;
-import com.example.animedle.entities.anime.models.Genres;
-import com.example.animedle.entities.anime.models.Seasons;
-import com.example.animedle.entities.anime.models.StatusAnime;
+import com.example.animedle.entities.Anime;
+import com.example.animedle.entities.models.Genres;
+import com.example.animedle.entities.models.Seasons;
+import com.example.animedle.entities.models.StatusAnime;
 import jakarta.annotation.Nullable;
 
 import java.util.List;
@@ -23,7 +23,6 @@ public class MakeAnime {
             @Nullable StatusAnime status
     ) {
         return Anime.builder()
-                .id(UUID.randomUUID())
                 .name(name)
                 .genresList(genresList)
                 .season(Optional.ofNullable(season).orElse(Seasons.WINTER))

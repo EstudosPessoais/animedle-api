@@ -1,10 +1,16 @@
 
 services:
-  pg:
-    image: bitnami/postgresql:latest
+  mongodb:
+    image: mongo:latest
+    restart: always
     ports:
-      - '5432:5432'
+      - '27017:27017'
     environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=animedle-db
+      MONGO_INITDB_ROOT_USERNAME: docker
+      MONGO_INITDB_ROOT_PASSWORD: docker
+      MONGO_INITDB_DATABASE: animedle-db
+    volumes:
+      - mongo-data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+volumes:
+  mongo-data:

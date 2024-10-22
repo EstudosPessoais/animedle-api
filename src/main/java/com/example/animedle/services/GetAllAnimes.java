@@ -1,12 +1,14 @@
 package com.example.animedle.services;
 
-import com.example.animedle.entities.anime.Anime;
+import com.example.animedle.entities.Anime;
 import com.example.animedle.errors.ResourceNotFoundException;
 import com.example.animedle.repositories.IAnimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class GetAllAnimes {
 
     private final IAnimeRepository animeRepository;
@@ -17,7 +19,7 @@ public class GetAllAnimes {
     }
 
     public List<Anime> execute() throws ResourceNotFoundException {
-        List<Anime> find = animeRepository.findAllAnimes();
+        var find = animeRepository.findAllAnimes();
 
         if(find.isEmpty()) {
             throw new ResourceNotFoundException("[Error] - Resource not found");

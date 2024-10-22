@@ -1,6 +1,6 @@
 package com.example.animedle.repositories;
 
-import com.example.animedle.entities.anime.Chosen;
+import com.example.animedle.entities.Chosen;
 import org.springframework.util.ObjectUtils;
 
 import java.time.LocalDate;

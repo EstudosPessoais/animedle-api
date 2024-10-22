@@ -1,6 +1,6 @@
 package com.example.animedle.repositories;
 
-import com.example.animedle.entities.anime.Anime;
+import com.example.animedle.entities.Anime;
 
 import java.util.List;
 import java.util.UUID;

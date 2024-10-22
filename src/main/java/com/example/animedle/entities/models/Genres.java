@@ -1,4 +1,4 @@
-package com.example.animedle.entities.anime.models;
+package com.example.animedle.entities.models;
 
 public enum Genres {
     ACTION,

@@ -1,7 +1,7 @@
 package com.example.animedle.services;
 
-import com.example.animedle.entities.anime.Anime;
-import com.example.animedle.entities.anime.models.Genres;
+import com.example.animedle.entities.Anime;
+import com.example.animedle.entities.models.Genres;
 import com.example.animedle.errors.ResourceNotFoundException;
 import com.example.animedle.factories.MakeAnime;
 import com.example.animedle.repositories.InMemoryAnimeRepository;

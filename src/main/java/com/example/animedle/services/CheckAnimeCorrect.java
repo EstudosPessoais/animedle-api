@@ -1,22 +1,28 @@
 package com.example.animedle.services;
 
-import com.example.animedle.entities.anime.Anime;
-import com.example.animedle.entities.anime.Chosen;
+import com.example.animedle.database.mongodb.AnimeRepository;
+import com.example.animedle.database.mongodb.ChosenRepository;
+import com.example.animedle.entities.Anime;
+import com.example.animedle.entities.Chosen;
 import com.example.animedle.errors.ResourceNotFoundException;
 import com.example.animedle.repositories.IAnimeRepository;
 import com.example.animedle.repositories.IChosenRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import java.util.UUID;
 
+@Service
 public class CheckAnimeCorrect {
 
     private final IChosenRepository chosenRepository;
     private final IAnimeRepository animeRepository;
 
+    @Autowired
     public CheckAnimeCorrect(IChosenRepository chosenRepository, IAnimeRepository animeRepository) {
-        this.chosenRepository = chosenRepository;
-        this.animeRepository = animeRepository;
+        this.chosenRepository = new ChosenRepository();
+        this.animeRepository = new AnimeRepository();
     }
 
     public Anime execute(UUID animeId) throws ResourceNotFoundException {

@@ -1,6 +1,6 @@
 package com.example.animedle.repositories;
 
-import com.example.animedle.entities.anime.Anime;
+import com.example.animedle.entities.Anime;
 
 import java.util.ArrayList;
 import java.util.List;

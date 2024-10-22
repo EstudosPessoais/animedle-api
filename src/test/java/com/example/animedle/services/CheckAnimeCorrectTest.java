@@ -80,11 +80,10 @@ public class CheckAnimeCorrectTest {
         inMemoryChosenRepository.db.add(MakeChosen.makeChosenFactory(chosenAnimeId, LocalDate.now().toString()));
 
         // ACT
-        ResourceNotFoundException result = assertThrows(ResourceNotFoundException.class, () -> {
-            sut.execute(wrongValue);
-        });
+        Anime result = sut.execute(wrongValue);
 
         // ARRANGE
-        assertEquals("[Error] - Today is not the day for this anime", result.getMessage());
+
+        assertNull(result);
     }
 }

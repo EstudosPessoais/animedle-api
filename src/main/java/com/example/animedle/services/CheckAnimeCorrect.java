@@ -26,7 +26,7 @@ public class CheckAnimeCorrect {
 
         Chosen findAnime = chosenRepository.getAnimeOfTheDay(animeId);
         if(ObjectUtils.isEmpty(findAnime)) {
-            throw new ResourceNotFoundException("[Error] - Today is not the day for this anime");
+            return null;
         }
 
         Anime findAnimeContext = animeRepository.findById(findAnime.getChosenAnimeId());

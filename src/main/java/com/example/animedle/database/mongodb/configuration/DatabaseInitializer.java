@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class DatabaseInitializer {
@@ -26,7 +27,9 @@ public class DatabaseInitializer {
             System.out.println("MongoDB Create - Name: 'animes'");
 
             List<Anime> animes = FactoryAnimeSeed.seedAnimeDb();
+            UUID firstChosen = animes.getFirst().getId();
             mongoTemplate.insert(animes, collectionName);
+            mongoTemplate.insert(FactoryChosenSeed.makeChosenFactory(firstChosen),"chosens");
             System.out.println("[DATABASE] - Input data!");
         } else {
             System.out.println("DB was already created");

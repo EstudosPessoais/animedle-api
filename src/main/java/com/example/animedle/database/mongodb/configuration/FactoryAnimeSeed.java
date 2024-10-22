@@ -42,7 +42,7 @@ public class FactoryAnimeSeed {
                 86,
                 "2016",
                 StatusAnime.RELEASING
-        ),
+            ),
         makeAnimeFactory(
                 "Corpse Party: Tortured Souls - Bougyakusareta Tamashii no Jukyou",
                 List.of(Genres.HORROR, Genres.MYSTERY, Genres.SUPERNATURAL),
@@ -52,7 +52,7 @@ public class FactoryAnimeSeed {
                 58,
                 "2013",
                 StatusAnime.FINISHED
-        )
-    );
+            )
+        );
     }
 }

@@ -6,12 +6,13 @@ import com.example.animedle.repositories.IAnimeRepository;
 import com.example.animedle.repositories.IChosenRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Random;
 
-@Service
+@Component
 public class ChooseAnime {
 
     private final IChosenRepository chosenRepository;
@@ -23,6 +24,7 @@ public class ChooseAnime {
         this.animeRepository = animeRepository;
     }
 
+    @Scheduled(cron = "0 0 0 * * *", zone = "America/Sao_Paulo")
     public void execute() throws Exception {
         log.info("[ChooseAnime] - Start CRON!");
         List<Anime> allAnimes = animeRepository.findAllAnimes();

@@ -4,6 +4,7 @@ import com.example.animedle.entities.Anime;
 import com.example.animedle.repositories.IAnimeRepository;
 import com.example.animedle.repositories.IChosenRepository;
 import com.example.animedle.services.GetAllAnimes;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,17 +18,16 @@ import java.util.List;
 public class CheckAnime {
 
     private final IAnimeRepository animeRepository;
-    private final IChosenRepository chosenRepository;
 
-    CheckAnime(IAnimeRepository animeRepository, IChosenRepository chosenRepository) {
+    @Autowired
+    private CheckAnime(IAnimeRepository animeRepository, IChosenRepository chosenRepository) {
         this.animeRepository = animeRepository;
-        this.chosenRepository = chosenRepository;
     }
 
     @GetMapping
-    public void getAllAnimes() {
+    public ResponseEntity<List<Anime>> getAllAnimes() {
         GetAllAnimes getAllAnimes = new GetAllAnimes(animeRepository);
         List <Anime> animes = getAllAnimes.execute();
-        ResponseEntity.ok();
+        return ResponseEntity.ok(animes);
     }
 }

@@ -5,6 +5,7 @@ import com.example.animedle.entities.Chosen;
 import com.example.animedle.errors.ResourceNotFoundException;
 import com.example.animedle.repositories.IAnimeRepository;
 import com.example.animedle.repositories.IChosenRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 

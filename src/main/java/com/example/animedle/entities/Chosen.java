@@ -22,6 +22,6 @@ public class Chosen extends RootEntity {
 
     public Chosen(UUID chosenAnimeId, @Nullable String chosenDate) {
         this.chosenAnimeId = chosenAnimeId;
-        this.chosenDate = Optional.of(chosenDate).orElse(LocalDate.now().toString());
+        this.chosenDate = Optional.ofNullable(chosenDate).orElse(LocalDate.now().toString());
     }
 }

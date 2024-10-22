@@ -6,7 +6,6 @@ import com.example.animedle.repositories.IAnimeRepository;
 import com.example.animedle.repositories.IChosenRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +18,6 @@ public class ChooseAnime {
     private final IAnimeRepository animeRepository;
     private final static Logger log = LoggerFactory.getLogger(ChooseAnime.class);
 
-    @Autowired
     public ChooseAnime(IChosenRepository chosenRepository, IAnimeRepository animeRepository) {
         this.chosenRepository = chosenRepository;
         this.animeRepository = animeRepository;

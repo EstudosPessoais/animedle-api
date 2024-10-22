@@ -13,7 +13,6 @@ public class GetAllAnimes {
 
     private final IAnimeRepository animeRepository;
 
-    @Autowired
     public GetAllAnimes(IAnimeRepository animeRepository) {
         this.animeRepository = animeRepository;
     }

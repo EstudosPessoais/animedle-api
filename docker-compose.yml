@@ -1,5 +1,14 @@
 
 services:
+  animedle-api-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+
   mongodb:
     image: mongo:latest
     restart: always
@@ -12,5 +21,7 @@ services:
     volumes:
       - mongo-data:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
 volumes:
   mongo-data:
+    driver: local
